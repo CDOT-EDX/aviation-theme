@@ -1,0 +1,138 @@
+## mako
+<%! from django.utils.translation import ugettext as _ %>
+<%! from microsite_configuration.templatetags.microsite import platform_name %>
+<%namespace name='static' file='static_content.html'/>
+
+<footer>
+  <div class="footer-container">
+    <nav class="nav">
+      <ul class="links">
+        <li><a href="http://www.senecacollege.ca/" target="_blank">Seneca Home Page</a></li>
+        <li><a href="http://www.senecacollege.ca/campuses/" target="_blank">Maps &amp; Directions</a></li>
+        <li><a href="http://www.senecacollege.ca/search" target="_blank">Search Seneca</a></li>
+        <li><a href="http://www.senecacollege.ca/privacy/" target="_blank">Terms of Use</a></li>
+        <li><a href="http://www.senecac.on.ca/students/ombudsperson/" target="_blank">Copyright Complaints</a></li>
+      </ul>
+    <ul class="links">
+        %if settings.MKTG_URL_LINK_MAP.get('ABOUT'):
+        <li>
+          <a id="about" href="${marketing_link('ABOUT')}">${_("About")}</a>
+        </li>
+        %endif
+        %if settings.MKTG_URL_LINK_MAP.get('FAQ'):
+        <li>
+          <a id="faq" href="${marketing_link('FAQ')}">${_("FAQ")}</a>
+        </li>
+        %endif
+        %if settings.MKTG_URL_LINK_MAP.get('CONTACT'):
+        <li>
+          <a id="contact" href="${marketing_link('CONTACT')}">${_("Contact")}</a>
+        </li>
+        %endif
+        %if settings.MKTG_URL_LINK_MAP.get('TOS'):
+        <li>
+          <a href="${marketing_link('TOS')}">${_("Terms of Service")}</a>
+        </li>
+        %endif
+        %if settings.MKTG_URL_LINK_MAP.get('HONOR'):
+        <li>
+          <a href="${marketing_link('HONOR')}">${_("Honor Code")}</a>
+        </li>
+        %endif
+        %if settings.MKTG_URL_LINK_MAP.get('PRIVACY'):
+        <li>
+          <a href="${marketing_link('PRIVACY')}">${_("Privacy Policy")}</a>
+        </li>
+        %endif
+      </ul>
+    </nav>
+    <div>
+      <p class="copyright">${_(u"© 2014 {platform_name}, some rights reserved.").format(platform_name=platform_name())}</p>
+    </div>
+    <div class="by-ionisx">
+      <a href="https://online.cdot.senecacollege.ca">
+        <img src="${static.url('themes/{theme_name}/images/SOL1.png'.format(theme_name=settings.THEME_NAME))}" alt="Seneca College Online Learning Platform"
+	style="width: 80px;"
+	>
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+    $(document).ready(function () {
+
+//$("body header.global>nav ol.user>li.primary>a").css("border-top-left-radius" , "0px");
+//$("body header.global>nav ol.user>li.primary>a").css("border-bottom-left-radius" , "0px");
+//$("body header.global>nav ol.user>li.primary>a").css("border-radius" , "0px");
+
+//$("header.global .user>.primary:last-child>a").css("border-top-left-radius" , "4px");
+//$("header.global .user>.primary:last-child>a").css("border-top-right-radius" , "4px");
+//$("header.global .user>.primary:last-child>a").css("border-bottom-left-radius" , "4px");
+//$("header.global .user>.primary:last-child>a").css("border-bottom-right-radius" , "4px");
+
+//$("header.global .primary>a").css("border" , "0px");
+//$("header.global .primary>a").css("border-radius" , "0px");
+
+
+var pathNameData = $(location).attr('href');
+    console.log("Before theme MOD ionisx");
+	
+	if($.trim(pathNameData) == "https://online.cdot.senecacollege.ca/"){
+	//  $("body header.global>nav h1.logo a").css("width","420px");
+	//  $("body header.global>nav h1.logo a").css("height", "150px");
+          $("body header.global>nav h1.logo a").css("background-image", "url('https://online.cdot.senecacollege.ca/static/themes/ionisx/images/PaladinParadigm-logo-large.png')");
+	  $("body header.global").css("background-color", "#6B869E");
+	//  $("body header.global>nav .nav-courseware").css("padding-top", "50px");
+	}
+	
+
+
+$(window).resize(function() {
+    console.log("before resize");
+	if($(window).width() < 768){
+       // $("body header.global>nav h1.logo a").css("width","420px");
+       // $("body header.global>nav h1.logo a").css("height", "77px"); //150
+	    $("body header.global>nav h1.logo a").css("background-image", "url('https://online.cdot.senecacollege.ca/static/themes/ionisx/images/PaladinParadigm-logo-small3-150x150.png')");  //#1
+    }
+
+    //    $("body header.global>nav .nav-courseware").css("padding-top", "50px");
+
+	//$("body > div.window-wrap > header > nav > ol.user > li:nth-child(2) > a").css("display","");
+
+
+	if($(window).width() >= 768){
+        //$("body header.global>nav h1.logo a").css("width","420px");
+        //$("body header.global>nav h1.logo a").css("height", "77px"); //150
+
+        $("body header.global>nav h1.logo a").css("background-image", "url('https://online.cdot.senecacollege.ca/static/themes/ionisx/images/PaladinParadigm-logo-large.png')"); //#1
+
+    //    $("body header.global>nav .nav-courseware").css("padding-top", "50px");
+
+	//$("body > div.window-wrap > header > nav > ol.user > li:nth-child(2) > a").css("display","");
+
+        }
+
+	$("body header.global").css("background-color", "#6B869E");
+
+    });
+
+$(window).trigger('resize');
+
+});
+//    $("body").append("---------------<br />pathname: " + $(location).attr('href') + "<br />---------------");
+</script>
+
+<script>
+    $(document).ready(function(){
+
+        //$('li > a:contains("Discussion")').remove();
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        //$("body > div.window-wrap > header > nav > ol.user > li:nth-child(2) > a").css("display","");
+    });
+</script>
